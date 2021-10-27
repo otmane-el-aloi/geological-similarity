@@ -1,6 +1,6 @@
 # Geological Similarity App
 
-## Methodologie
+## Methodology
 This app allows geologist to find the K-Most similar images to an input image, the main steps of this pipeline are depicted in the following schema:
 ![Alt text](asset/schema.png)
 
