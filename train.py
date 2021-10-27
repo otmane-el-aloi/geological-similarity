@@ -2,7 +2,7 @@
 
 # internal
 from configs.config import CFG
-from model.model import FeatureExtractor
+from models.model import FeatureExtractor
 from utils.plots import Plot
 
 

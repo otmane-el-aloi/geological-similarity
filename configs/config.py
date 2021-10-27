@@ -3,14 +3,14 @@
 
 CFG = {
     "data": {
-        "path": "./data/geological_similarity",
+        "path": "./data/geological_similarity/",
         "label_mode": "categorical",
         "image_size": 32,
         "batch_size": 32,
         "validation_split": 0.2,
     },
     "train": {
-        "epoches": 1
+        "epoches": 100
     },
     "base_model": {
         "input": [32, 32, 3],
