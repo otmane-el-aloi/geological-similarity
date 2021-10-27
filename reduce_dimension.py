@@ -1,7 +1,7 @@
 # Standard
 import joblib
 
-# Data 
+# External
 import pandas as pd
 from sklearn.decomposition import PCA
 
@@ -11,11 +11,9 @@ def run():
 # Data loading
     df = pd.read_csv("./extracted_features/extracted_features.csv")
 
-    # Dimensionn reduction
+    # Dimension reduction
     pca  = PCA(3)
     pca.fit(df.iloc[:,:-3])
-
-
     reduced_data = pca.transform(df.iloc[:,:-3])
     reduced_df = pd.DataFrame(reduced_data, columns=["PC1", "PC2", "PC3"])
 
@@ -28,11 +26,7 @@ def run():
 
     # saving pca object for reuse
     joblib.dump(pca, "./dimensionality_reduction/pca_model.joblib")
-
     print("dimension reduction with success!")
-
-
-
 
 if __name__ == "__main__":
     run()

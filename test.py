@@ -22,15 +22,14 @@ KNEIGHBORS_DIRECTORY = "kneighbors_finding/kneighbors_model.joblib"
 # PCA model 
 PCA_MODEL_DIRECTORY = "dimensionality_reduction/pca_model.joblib"
 
-
+# Load data
 df = pd.read_csv(REDUCED_DATA_PATH)
 df["class"] = df["class"].astype("str")
 
 
-
 def extract_features(img):
     """ This function takes an image of interest, extracts feautres and reduces its dimension """
-    # Load models
+    # load models
     model = FeatureExtractor(CFG)
     model.load_model()
     feature_extractor = model.feature_extractor()
@@ -39,11 +38,9 @@ def extract_features(img):
     print(type(img))
     extracted_features = feature_extractor.predict([img])
 
-    print(extracted_features)
     # reduce dimension
     pca_model = joblib.load(PCA_MODEL_DIRECTORY)
     reduced_img = pca_model.transform(extracted_features)
-
     return reduced_img
 
 
@@ -56,8 +53,7 @@ def run():
     # Loading the uploaded image and performing feature extraction
     image_of_interest = data_loader_object.load_uploaded_img(UPLOAD_DIRECTORY, "image_of_interest.jpg")
     preprocessed_img = data_loader_object.preprocess_image(image_of_interest)
-
-    reduced_image = extract_features(preprocessed_img) 
+    reduced_image = extract_features(preprocessed_img)
 
     # Finding the 6 neighrest images 
     neigh = joblib.load(KNEIGHBORS_DIRECTORY)
@@ -70,9 +66,6 @@ def run():
         neighbor_class = df.loc[index_neighbor, "class"]
         neighrest_images.append(neighbor_name)
         neighrest_classes.append(neighbor_class)
-    
-
-
 
 
 if __name__== "__main__":

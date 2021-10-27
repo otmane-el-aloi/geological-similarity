@@ -46,10 +46,8 @@ KNEIGHBORS_DIRECTORY = "kneighbors_finding/kneighbors_model.joblib"
 PCA_MODEL_DIRECTORY = "dimensionality_reduction/pca_model.joblib"
 
 
-
 if not os.path.exists(UPLOAD_DIRECTORY):
     os.makedirs(UPLOAD_DIRECTORY)
-
 
 def save_file(name, content):
     """Decode and store an image uploaded with Plotly Dash."""
@@ -72,9 +70,8 @@ df = pd.read_csv(REDUCED_DATA_PATH)
 df["class"] = df["class"].astype("str")
 df = df.drop(["Unnamed: 0"], axis=1)
 
-# Test figure
+# Figures
 fig = px.scatter_3d(df, x='PC1', y='PC2', z='PC3', color="class")
-
 fig.update_layout(margin=dict(l=100, r=0, b=0, t=0),
                   paper_bgcolor="rgb(0,0,0,0)")
 fig.update_scenes(xaxis_visible=False,
@@ -88,7 +85,6 @@ app = dash.Dash(__name__,
                 )
 
 # Layout: Bootstrap ^^
-
 app.layout = dbc.Container([
     dbc.Row([
             dbc.Col(html.H1([dbc.Badge("Geological Similarity",color="dark", className="ml-1")],
@@ -149,7 +145,8 @@ app.layout = dbc.Container([
             html.P("Uploaded image", className="card-text")),
             dbc.CardImg(id="uploaded-image",
                 src="", className="img-thumbnail", bottom=True),
-            html.Div(dbc.Button("Lunch feature extraction", id ="feature-extraction-button", color="info", outline = True, className="mr-1"), style = {"margin": "10px", "position": "center"})
+            html.Div(dbc.Button("Lunch feature extraction", id ="feature-extraction-button", color="info", outline = True, className="mr-1"),
+             style = {"margin": "10px", "position": "center"})
         ],
         width={"size": 2}),
 
@@ -235,7 +232,6 @@ app.layout = dbc.Container([
 ], fluid=True)
 
 
-# Util functions 
 def extract_features(img):
     """ This function takes an image of interest, extracts feautres and reduces its dimension """
     # Load models
@@ -263,13 +259,12 @@ def updateOutput(uploaded_image_name, uploaded_image_content):
 
     if uploaded_image_name is not None and uploaded_image_content is not None:
             save_file(uploaded_image_name[0], uploaded_image_content[0])
-    files = uploaded_images()
 
+    files = uploaded_images()
     if "image_of_interest.jpg" not in files:
         print("image don't exist")
         return dash.no_update
     else:
-        
         print("image loaded with sucess")
         return "static/images/image_of_interest.jpg"
 
@@ -363,9 +358,6 @@ def findNeighrest(n_clicks, classes):
 
 
             return neighrest_directories[0], neighrest_directories[1], neighrest_directories[2], neighrest_directories[3], neighrest_directories[4], neighrest_directories[5], fig
-
-
-
 
 
 if __name__ == "__main__":

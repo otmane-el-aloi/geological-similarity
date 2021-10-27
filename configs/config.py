@@ -1,4 +1,4 @@
-"""Model config in json format"""
+""" Model config in json format """
 
 
 CFG = {

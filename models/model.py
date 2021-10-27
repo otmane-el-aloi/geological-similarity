@@ -1,4 +1,4 @@
-""" Trasfer learning using VGG16 as base model"""
+""" Transfer learning using VGG16 as a base model"""
 
 # standard library
 
@@ -31,7 +31,7 @@ class BaseModelVGG16:
 
 
 class FeatureExtractor:
-    """Feature Extractor Model Class"""
+    """ Feature Extractor Model Class """
 
     def __init__(self, cfg):
         self.config = cfg

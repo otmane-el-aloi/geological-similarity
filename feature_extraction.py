@@ -13,9 +13,12 @@ from configs.config import CFG
 
 
 def extract_features_from_image(model, image):
-    """ This function uses the feature extractor to extract features from """
+    """ This function uses the feature extractor to extract features
+     from the input image 
+     """
     extract_features = model.predict(image)
     return extract_features
+
 
 def extract_features_from_data(model):
     """ This function extracts features and generate a csv file """
@@ -40,8 +43,6 @@ def extract_features_from_data(model):
     df = pd.concat([df1, df2, df3], axis = 1)
     df.to_csv("./extracted_features/extracted_features.csv")
     print("features extracted  with sucess!")
-    
-
 
 
 if __name__ == "__main__":

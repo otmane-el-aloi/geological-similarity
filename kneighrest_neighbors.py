@@ -1,25 +1,23 @@
 # Standard
 import joblib
 
-# Data 
+# External
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 
 
 
 def run():
-# Data loading
+    # Data loading
     df = pd.read_csv("./dimensionality_reduction/reduced_data.csv")
-
     data = df.iloc[:,:-3]
-    data.head()
 
+    # KNN
     neigh = NearestNeighbors(n_neighbors=6)
     neigh.fit(data)
 
     # saving pca object for reuse
     joblib.dump(neigh, "./kneighbors_finding/kneighbors_model.joblib")
-
     print("6 neihbors model fitted with sucess!")
 
 
