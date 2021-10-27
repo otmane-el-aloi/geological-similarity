@@ -27,9 +27,6 @@ from dataLoader.dataLoader import dataLoader
 from configs.config import CFG
 
 
-
-
-
 # Reduced Data directory
 REDUCED_DATA_PATH = "dimensionality_reduction/reduced_data.csv"
 
@@ -245,7 +242,6 @@ def extract_features(img):
     # reduce dimension
     pca_model = joblib.load(PCA_MODEL_DIRECTORY)
     reduced_img = pca_model.transform(extracted_features)
-
     return reduced_img
 
 
@@ -331,32 +327,23 @@ def findNeighrest(n_clicks, classes):
             i = 0
             for class_name, name in zip(neighrest_classes, neighrest_images):
                 neighrest_directories.append("static/images/"+str(name))
-                i += 1     
-            print(neighrest_directories)
+                i += 1 
+
             # Plotting the uploaded image to the 3D scatter
             df2 = {'PC2': reduced_image[0], 'PC2': reduced_image[1], 'PC3': reduced_image[2], 'class': 'uploaded_image', 'name': " "}
-
             df = df.append(df2, ignore_index = True)
-
             classes = [str(c) for c in classes]
-
             dff = df.loc[df["class"].isin(classes)]
-
             fig = px.scatter_3d(dff, x='PC1', y='PC2', z='PC3', color="class")
-
             fig.update_layout(margin=dict(l=100, r=0, b=0, t=0),
                             paper_bgcolor="rgb(0,0,0,0)")
             fig.update_scenes(xaxis_visible=False,
                             yaxis_visible=False, zaxis_visible=False)
-
-
             app = dash.Dash(__name__,
                             external_stylesheets=[dbc.themes.LUX],
                             meta_tags=[{'name': 'viewport',
                                         'content': 'width=device-width, initial-scale=1.0'}]
                             )
-
-
             return neighrest_directories[0], neighrest_directories[1], neighrest_directories[2], neighrest_directories[3], neighrest_directories[4], neighrest_directories[5], fig
 
 
