@@ -26,7 +26,7 @@ Additional improvements will be taken into consideration in future updates:
 
 
 
-## Sources:
+## Sources
 - The dataSet was taken from kaggle: 
 [DataSet](https://www.kaggle.com/tanyadayanand/geological-image-similarity)
 
