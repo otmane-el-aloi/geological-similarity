@@ -9,7 +9,7 @@ This app allows geologist to find the K-Most similar images to an input image, t
 
 
 
-The previous pipeline is presented as a user freindly web app: 
+The previous pipeline is presented as a user friendly web app: 
 ![Alt text](asset/exemple.png)
 
 
